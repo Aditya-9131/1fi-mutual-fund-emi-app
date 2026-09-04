@@ -1,0 +1,79 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          String           @id @default(cuid())
+  slug        String           @unique
+  title       String
+  brand       String
+  category    String           @default("Smartphones")
+  description String
+  badge       String?          @default("NEW")
+  rating      Float            @default(4.8)
+  reviewCount Int              @default(1250)
+  features    String           // JSON string of specs
+  variants    ProductVariant[]
+  emiPlans    EmiPlan[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model ProductVariant {
+  id            String   @id @default(cuid())
+  productId     String
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  name          String
+  colorName     String
+  colorHex      String
+  storage       String
+  mrp           Float
+  price         Float
+  stock         Int      @default(15)
+  imageUrl      String
+  galleryImages String   // JSON array of URLs
+  isDefault     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model EmiPlan {
+  id                    String   @id @default(cuid())
+  productId             String
+  product               Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tenureMonths          Int
+  interestRate          Float    @default(0.0)
+  monthlyEmi            Float
+  cashbackAmount        Float    @default(0.0)
+  isZeroPercent         Boolean  @default(true)
+  badgeText             String?
+  minMfHolding          Float    @default(50000.0)
+  expectedMfReturnsRate Float    @default(12.0)
+  isPopular             Boolean  @default(false)
+  orderIndex            Int      @default(0)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model Application {
+  id             String   @id @default(cuid())
+  applicantName  String
+  applicantPhone String
+  applicantEmail String
+  panNumber      String
+  productId      String
+  variantId      String
+  emiPlanId      String
+  monthlyAmount  Float
+  tenureMonths   Int
+  cashbackEarned Float
+  status         String   @default("APPROVED")
+  mfPledgedUnits Float?   @default(100.0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
