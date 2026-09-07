@@ -380,3 +380,5 @@ When recording your demo video for submission:
 - [x] Selectable EMI plans with Proceed action
 - [x] Database schema & seed data (`prisma/schema.prisma`, `prisma/seed.ts`, `prisma/seed-data.json`)
 - [x] Comprehensive `README.md` with setup, API contracts, tech stack, and schema ERD
+#   1 f i - m u t u a l - f u n d - e m i - a p p  
+ 
