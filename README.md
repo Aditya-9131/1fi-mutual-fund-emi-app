@@ -1,44 +1,70 @@
-# 1Fi SDE1 Assignment - Mutual Fund-Backed Smartphone EMI Web App
+# 1Fi SDE1 Assignment — Mutual Fund-Backed Smartphone EMI Web App
 
-A production-ready full-stack web application that showcases flagship smartphones with flexible **EMI plans backed by mutual funds**, built according to the **1Fi SDE-1 Assignment** specification.
+> A production-ready, full-stack web application that showcases flagship smartphones with flexible **EMI plans backed by mutual funds**, built as part of the **1Fi SDE-1 Assignment** specification.
 
-![1Fi Banner](https://img.shields.io/badge/1Fi-Fintech%20Engineering-purple?style=for-the-badge)
-![Next.js 14](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=for-the-badge&logo=typescript)
-![Prisma](https://img.shields.io/badge/Prisma-ORM-teal?style=for-the-badge&logo=prisma)
-![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
-![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite)
+[![Next.js 14](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Prisma ORM](https://img.shields.io/badge/Prisma-ORM-teal?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite)](https://www.sqlite.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-Aditya--9131-181717?style=for-the-badge&logo=github)](https://github.com/Aditya-9131/1fi-mutual-fund-emi-app)
+
+---
+
+## 📑 Table of Contents
+
+1. [Project Overview](#-project-overview)
+2. [Key Features](#-key-features)
+3. [Tech Stack](#-tech-stack)
+4. [Project Structure](#-project-structure)
+5. [Setup & Run Instructions](#-setup--run-instructions)
+6. [API Reference](#-api-reference)
+7. [Database Schema](#-database-schema)
+8. [Submission Checklist](#-submission-checklist)
+9. [Video Demo Guide](#-video-demo-guide)
+10. [Deployment](#-deployment)
+
+---
+
+## 🧾 Project Overview
+
+Traditional consumer EMIs either charge high interest or require you to liquidate your mutual fund investments — triggering capital gains taxes and missing out on compounding returns.
+
+**1Fi solves this** by letting users **pledge** their mutual fund units as collateral to unlock 0%-interest smartphone EMIs. Their portfolio stays intact and continues compounding at ~12% p.a. while they pay zero down-payment, zero interest EMIs.
+
+This app demonstrates the full product and checkout experience, backed by a real database and REST API — zero hardcoded frontend data.
 
 ---
 
 ## 🌟 Key Features
 
-1. **Dynamic Product & Variant System**:
-   - Unique, dedicated URLs for each product:
-     - `/products/iphone-17-pro`
-     - `/products/samsung-s24-ultra`
-     - `/products/google-pixel-9-pro`
-     - `/products/oneplus-12`
-   - Real-time specification switching (Storage options: 128GB, 256GB, 512GB, 1TB; Finishes: Titanium Desert, Natural, Black, White, etc.).
-   - Switching variants automatically recalculates prices, savings, and all monthly installment amounts across all tenures dynamically.
+### 1. Dynamic Product & Variant System
+- Unique, SEO-friendly URLs for each product:
+  - `/products/iphone-17-pro`
+  - `/products/samsung-s24-ultra`
+  - `/products/google-pixel-9-pro`
+  - `/products/oneplus-12`
+- Real-time variant switching (Storage: 128GB / 256GB / 512GB / 1TB; Color finishes: Desert Titanium, Natural, Black, White, etc.)
+- Selecting a variant instantly recalculates price, MRP strike-through, savings, and all EMI monthly amounts across all tenures.
 
-2. **Mutual Fund-Backed EMI Plans (Pixel-Perfect UI)**:
-   - Designed to match the exact reference layout from the assignment specification.
-   - Tenures: **3, 6, 12, 24, 36, 48, and 60 months**.
-   - Interest rates: **0% interest** zero-cost tenures and **10.5% interest** extended tenures.
-   - Cashback tags: Highlighted cashback values (e.g., `Additional cashback of ₹7,500`).
-   - Interactive selection: Active border highlight, checkmark indicator, and live summary calculation.
+### 2. Mutual Fund-Backed EMI Plans (Pixel-Perfect UI)
+- Designed to match the exact reference layout from the assignment specification.
+- **Tenures**: 3, 6, 12, 24, 36, 48, and 60 months.
+- **Interest rates**: 0% interest (zero-cost) for short tenures; 10.5% p.a. for extended tenures.
+- **Cashback tags**: Highlighted cashback values (e.g., `Additional cashback of ₹7,500`).
+- Interactive plan selection with active border highlight, checkmark indicator, and live summary recalculation.
 
-3. **1Fi Intelligent Credit & Mutual Fund Explainer**:
-   - Interactive *"How it works"* educational modal explaining how mutual fund pledging keeps investments compounding at ~12% p.a. while paying ₹0 down-payment EMIs without liquidating assets or triggering tax penalties.
+### 3. 1Fi Intelligent Credit & Mutual Fund Explainer
+- An interactive **"How it works"** modal that educates users on how mutual fund pledging works, why investments continue compounding, and why there's no capital gains tax event.
 
-4. **Proceed with Selected Plan Flow**:
-   - Full application and KYC checkout flow.
-   - Submits application directly to the backend database (`POST /api/applications`).
-   - Instant simulated digital verification and approval with Application ID generation.
+### 4. Proceed with Selected Plan Flow
+- Full KYC & application checkout flow.
+- Submits application to the backend via `POST /api/applications`.
+- Returns instant simulated approval with a unique Application ID.
 
-5. **Robust Database & REST APIs**:
-   - Zero hardcoded frontend data—everything is served dynamically via REST APIs from an ORM-backed relational database (`SQLite` locally, ready for `PostgreSQL`/`Supabase` in production).
+### 5. Robust Database & REST APIs
+- All product, variant, and EMI data is stored in a relational database (SQLite locally, PostgreSQL-ready).
+- Every page and component fetches data exclusively from REST API endpoints — no static hardcoded data in the frontend.
 
 ---
 
@@ -48,11 +74,64 @@ A production-ready full-stack web application that showcases flagship smartphone
 | :--- | :--- |
 | **Frontend Framework** | React 18 + Next.js 14 (App Router) |
 | **Language** | TypeScript (Strict mode) |
-| **Styling** | Tailwind CSS + Vanilla CSS Tokens + Glassmorphism |
+| **Styling** | Tailwind CSS + Glassmorphism tokens |
 | **Icons** | Lucide React |
-| **Backend & APIs** | Next.js Route Handlers (Node.js REST APIs) |
-| **ORM** | Prisma ORM 5.22 |
-| **Database** | SQLite (zero-config local) / PostgreSQL compatible |
+| **Backend & APIs** | Next.js Route Handlers (Node.js REST) |
+| **ORM** | Prisma ORM 5.x |
+| **Database** | SQLite (local, zero-config) / PostgreSQL compatible |
+| **Package Manager** | npm |
+
+---
+
+## 📁 Project Structure
+
+```
+1Fi_SDE1_Assignment/
+├── prisma/
+│   ├── schema.prisma        # Database schema (Product, Variant, EmiPlan, Application)
+│   ├── seed.ts              # Full seed script for 4 flagship products
+│   ├── seed-data.json       # Raw seed data (products, variants, EMI plans)
+│   └── dev.db               # SQLite database file (auto-generated)
+│
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx       # Root layout with Navbar & Footer
+│   │   ├── page.tsx         # Home page — Product listing grid
+│   │   ├── globals.css      # Global CSS tokens and reset
+│   │   ├── products/
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx # Dynamic product detail page
+│   │   └── api/
+│   │       ├── products/
+│   │       │   ├── route.ts              # GET /api/products
+│   │       │   └── [slug]/route.ts       # GET /api/products/:slug
+│   │       ├── applications/
+│   │       │   └── route.ts              # POST /api/applications
+│   │       └── emi-calculator/
+│   │           └── route.ts              # GET /api/emi-calculator
+│   │
+│   ├── components/
+│   │   ├── Navbar.tsx             # Top navigation bar
+│   │   ├── Footer.tsx             # Site footer
+│   │   ├── ProductCard.tsx        # Card used in product listing grid
+│   │   ├── ProductGallery.tsx     # Image gallery with variant switching
+│   │   ├── VariantSelector.tsx    # Color & storage selector
+│   │   ├── EmiPlanList.tsx        # EMI plan cards with interactive selection
+│   │   ├── EmiProceedModal.tsx    # KYC & confirmation checkout modal
+│   │   └── MutualFundInfoModal.tsx # "How it works" educational modal
+│   │
+│   └── lib/
+│       └── prisma.ts        # Prisma client singleton
+│
+├── public/
+│   └── images/              # Product images
+│
+├── .env                     # Environment variables
+├── next.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+└── package.json
+```
 
 ---
 
@@ -60,37 +139,52 @@ A production-ready full-stack web application that showcases flagship smartphone
 
 ### Prerequisites
 - **Node.js**: v18.17+ or v20+
-- **npm** or **yarn** / **pnpm**
+- **npm** (v9+)
 
-### Step 1: Clone the Repository
+---
+
+### Step 1 — Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/1Fi_SDE1_Assignment.git
-cd 1Fi_SDE1_Assignment
+git clone https://github.com/Aditya-9131/1fi-mutual-fund-emi-app.git
+cd 1fi-mutual-fund-emi-app
 ```
 
-### Step 2: Install Dependencies
+---
+
+### Step 2 — Install Dependencies
 ```bash
 npm install
 ```
 
-### Step 3: Configure Environment Variables
-Create a `.env` file in the root directory (a default `.env` is already configured):
+> This also runs `prisma generate` automatically via the `postinstall` script.
+
+---
+
+### Step 3 — Configure Environment Variables
+
+A default `.env` file is already present. Verify or update it:
+
 ```env
 DATABASE_URL="file:./dev.db"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-### Step 4: Initialize & Seed the Database
-Push the Prisma schema and run the seed script to populate products, variants, and EMI plans:
+---
+
+### Step 4 — Initialize & Seed the Database
+
 ```bash
-# Push schema to SQLite
+# Apply the Prisma schema to SQLite
 npx prisma db push
 
-# Seed 4 flagship products with multiple variants & EMI plans
+# Seed 4 flagship products with variants & EMI plans
 npm run db:seed
 ```
 
-### Step 5: Start the Development Server
+---
+
+### Step 5 — Start the Development Server
+
 ```bash
 npm run dev
 ```
@@ -99,13 +193,25 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 📡 API Endpoints & Example Responses
+### Available npm Scripts
 
-### 1. List All Products
-- **Route**: `GET /api/products`
-- **Description**: Returns all catalog products with variants and lowest monthly EMI.
+| Script | Description |
+| :--- | :--- |
+| `npm run dev` | Start local development server |
+| `npm run build` | Production build (includes DB push + seed) |
+| `npm run start` | Start production server |
+| `npm run db:push` | Push Prisma schema to database |
+| `npm run db:seed` | Seed the database with product data |
+| `npm run db:studio` | Open Prisma Studio (GUI for the database) |
 
-#### Response:
+---
+
+## 📡 API Reference
+
+### `GET /api/products`
+Returns all catalog products with their default variant and lowest monthly EMI.
+
+**Example Response:**
 ```json
 {
   "success": true,
@@ -139,11 +245,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-### 2. Get Single Product by Slug or ID
-- **Route**: `GET /api/products/:slug` (e.g. `GET /api/products/iphone-17-pro`)
-- **Description**: Returns complete product details, all color/storage variants, specs, and tailored EMI plans.
+### `GET /api/products/:slug`
+Returns full product details including all variants and EMI plans.
 
-#### Response:
+**Example:** `GET /api/products/iphone-17-pro`
+
+**Example Response:**
 ```json
 {
   "success": true,
@@ -152,10 +259,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
     "slug": "iphone-17-pro",
     "title": "iPhone 17 Pro",
     "brand": "Apple",
-    "category": "Smartphones",
-    "badge": "NEW",
-    "rating": 4.9,
-    "reviewCount": 1842,
     "features": [
       { "title": "Chipset", "value": "Apple A19 Pro (3nm Gen 2)" },
       { "title": "Display", "value": "6.3\" Super Retina XDR OLED, 120Hz ProMotion" }
@@ -184,24 +287,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
         "badgeText": "0% interest"
       },
       {
-        "id": "emi_2",
-        "tenureMonths": 6,
-        "interestRate": 0,
-        "monthlyEmi": 22483,
-        "cashbackAmount": 7500,
-        "isZeroPercent": true,
-        "badgeText": "0% interest"
-      },
-      {
-        "id": "emi_3",
-        "tenureMonths": 12,
-        "interestRate": 0,
-        "monthlyEmi": 11242,
-        "cashbackAmount": 7500,
-        "isZeroPercent": true,
-        "badgeText": "0% interest"
-      },
-      {
         "id": "emi_5",
         "tenureMonths": 36,
         "interestRate": 10.5,
@@ -217,11 +302,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-### 3. Submit EMI Application ("Proceed with Plan")
-- **Route**: `POST /api/applications`
-- **Description**: Stores customer application in database and returns instant approval confirmation.
+### `POST /api/applications`
+Submits a customer's EMI application and returns an instant approval.
 
-#### Request Body:
+**Request Body:**
 ```json
 {
   "applicantName": "Rahul Sharma",
@@ -238,7 +322,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 }
 ```
 
-#### Response:
+**Response:**
 ```json
 {
   "success": true,
@@ -259,15 +343,25 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-### 4. Dynamic Financial Calculator
-- **Route**: `GET /api/emi-calculator?price=127400&tenure=12&interest=0&cashback=7500`
-- **Description**: Computes installment breakdown, interest savings, and estimated mutual fund compounding return during tenure.
+### `GET /api/emi-calculator`
+Dynamically computes installment breakdown and mutual fund compounding return estimates.
+
+**Query Parameters:**
+
+| Parameter | Type | Example | Description |
+| :--- | :--- | :--- | :--- |
+| `price` | number | `127400` | Product price (after discount) |
+| `tenure` | number | `12` | Loan tenure in months |
+| `interest` | number | `0` | Annual interest rate (%) |
+| `cashback` | number | `7500` | Cashback amount (₹) |
+
+**Example:** `GET /api/emi-calculator?price=127400&tenure=12&interest=0&cashback=7500`
 
 ---
 
 ## 🗄️ Database Schema
 
-The database architecture is defined in [`prisma/schema.prisma`](./prisma/schema.prisma).
+Defined in [`prisma/schema.prisma`](./prisma/schema.prisma).
 
 ```mermaid
 erDiagram
@@ -286,7 +380,7 @@ erDiagram
         string badge
         float rating
         int reviewCount
-        string features
+        json features
     }
 
     PRODUCT_VARIANT {
@@ -300,7 +394,6 @@ erDiagram
         float price
         int stock
         string imageUrl
-        string galleryImages
         boolean isDefault
     }
 
@@ -321,64 +414,66 @@ erDiagram
 
     APPLICATION {
         string id PK
+        string productId
+        string variantId FK
+        string emiPlanId FK
         string applicantName
         string applicantPhone
         string applicantEmail
         string panNumber
-        string productId
-        string variantId
-        string emiPlanId
         float monthlyAmount
         int tenureMonths
         float cashbackEarned
-        string status
         float mfPledgedUnits
+        string status
+        datetime createdAt
     }
 ```
 
 ---
 
-## 🎥 2-5 Minute Video Recording Guide
+## ✅ Submission Checklist
 
-When recording your demo video for submission:
-
-1. **Introduction (30s)**:
-   - Introduce yourself and explain the problem: Traditional EMIs charge high interest or require liquidating mutual funds (incurring capital gains tax). 1Fi enables users to pledge mutual funds to get 0% interest smartphone EMIs while their investments continue compounding.
-2. **Product Page & Reference UI (60s)**:
-   - Navigate to `/products/iphone-17-pro`.
-   - Show that the UI matches the reference image: Price (`₹1,27,400`), MRP strike-through (`₹1,34,900`), and all EMI plans (3m, 6m, 12m, 24m at 0% interest, 36m, 48m, 60m at 10.5% interest, with `Additional cashback of ₹7,500`).
-   - Demonstrate interactive variant switching (select 512GB / 1TB, Natural Titanium / Black Titanium) and show how price and EMI table recalculate dynamically.
-3. **Interactive Features & Modal (30s)**:
-   - Click "How it works" to showcase the Mutual Fund Explainer dialog.
-   - Select an EMI plan (e.g. 12 months) and click **"Proceed with selected plan"**.
-   - Show the application review breakdown and click **"Confirm & Pledge Mutual Funds"** to show instant approval with Application ID.
-4. **Backend & Database (45s)**:
-   - Show the REST API responses in your browser/terminal (`/api/products`, `/api/products/iphone-17-pro`).
-   - Highlight the Prisma schema (`prisma/schema.prisma`) and seed data (`prisma/seed.ts`).
-5. **Conclusion (15s)**:
-   - Summarize the tech stack (Next.js 14, React, Tailwind CSS, Prisma ORM, SQLite/PostgreSQL) and wrap up.
+- [x] Backend API connected to database — zero hardcoded frontend data
+- [x] Unique URLs for each product (`/products/iphone-17-pro`, `/products/samsung-s24-ultra`, etc.)
+- [x] At least 3 products with 2+ variants each (4 products, 5–7 variants each)
+- [x] Dynamic EMI calculation matching the reference screenshot
+- [x] Selectable EMI plans with "Proceed with Selected Plan" action
+- [x] Full checkout flow with Application ID generation and instant approval
+- [x] Database schema (`prisma/schema.prisma`) and seed data (`prisma/seed.ts`, `prisma/seed-data.json`)
+- [x] Comprehensive `README.md` with setup, API contracts, tech stack, and schema ERD
+- [x] "How it works" Mutual Fund educational modal
 
 ---
 
-## ☁️ Deployment (Vercel / Render)
+## 🎥 Video Demo Guide (2–5 Minutes)
+
+| Segment | Duration | Content |
+| :--- | :--- | :--- |
+| **Introduction** | ~30s | Introduce yourself. Explain the problem: traditional EMIs charge high interest or force users to liquidate mutual funds (triggering capital gains tax). Explain how 1Fi allows pledging mutual funds for 0% interest EMIs while investments keep compounding. |
+| **Product Page & Reference UI** | ~60s | Navigate to `/products/iphone-17-pro`. Show the price (₹1,27,400), MRP strike-through (₹1,34,900), and all EMI plans (3m, 6m, 12m, 24m at 0%; 36m, 48m, 60m at 10.5%) with `Additional cashback of ₹7,500`. Demonstrate variant switching and show dynamic price + EMI recalculation. |
+| **Interactive Features & Modal** | ~30s | Click **"How it works"** to show the Mutual Fund Explainer modal. Select the 12-month EMI plan and click **"Proceed with selected plan"**. Walk through the checkout review screen. |
+| **Confirmation & Application ID** | ~15s | Click **"Confirm & Pledge Mutual Funds"** to show instant approval with the generated Application ID. |
+| **Backend & Database** | ~45s | Open the API in the browser — `/api/products` and `/api/products/iphone-17-pro`. Show `prisma/schema.prisma` and `prisma/seed.ts` in the editor. |
+| **Conclusion** | ~15s | Summarize the tech stack (Next.js 14, React 18, Tailwind CSS, Prisma ORM, SQLite/PostgreSQL) and wrap up. |
+
+---
+
+## ☁️ Deployment
 
 ### Deploy to Vercel (Recommended)
-1. Push your repository to GitHub.
-2. Import the repo on [Vercel](https://vercel.com).
-3. Set the environment variable:
-   - `DATABASE_URL`: `file:./dev.db` (or connect a free Supabase / Neon PostgreSQL database).
-4. Vercel automatically runs `prisma generate` and `next build` via the `postinstall` script in `package.json`.
+
+1. Push your repository to GitHub: [github.com/Aditya-9131/1fi-mutual-fund-emi-app](https://github.com/Aditya-9131/1fi-mutual-fund-emi-app)
+2. Import the repository on [vercel.com](https://vercel.com).
+3. Set the environment variables:
+   - `DATABASE_URL` → `file:./dev.db` (or a PostgreSQL connection string from Supabase / Neon)
+   - `NEXT_PUBLIC_APP_URL` → your Vercel deployment URL
+4. Vercel automatically runs `prisma generate` and `next build` via the `postinstall` + `build` scripts in `package.json`.
+
+> **Note for Production:** Switch `DATABASE_URL` to a PostgreSQL connection string (Supabase / Neon). The Prisma schema is already compatible — only the `provider` in `schema.prisma` needs updating from `sqlite` to `postgresql`.
 
 ---
 
-## 👨‍💻 Submission Checklist
+## 👨‍💻 Author
 
-- [x] Backend API connected to database (no hardcoded data)
-- [x] Unique URLs for each product (`/products/iphone-17-pro`, `/products/samsung-s24-ultra`, etc.)
-- [x] At least 3 products with 2+ variants each
-- [x] Dynamic EMI calculation matching the reference screenshot
-- [x] Selectable EMI plans with Proceed action
-- [x] Database schema & seed data (`prisma/schema.prisma`, `prisma/seed.ts`, `prisma/seed-data.json`)
-- [x] Comprehensive `README.md` with setup, API contracts, tech stack, and schema ERD
-#   1 f i - m u t u a l - f u n d - e m i - a p p  
- 
+**Aditya** — SDE1 Assignment Submission for **1Fi**
